@@ -1,0 +1,25 @@
+﻿<Window x:Class="m3u8WithGo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:m3u8WithGo"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="M3U8Download" Height="458" Width="355" MinWidth="355" MinHeight="450">
+    <Grid>
+        <Label Content="地址：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <TextBox x:Name="urlText" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" Margin="61,10,0,0"/>
+        <Label Content="文件名：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,38,0,0"/>
+        <TextBox x:Name="filenameText" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" Margin="61,38,0,0"/>
+        <Button x:Name="btnAdd" Content="添加" HorizontalAlignment="Left" Margin="13,68,0,0" VerticalAlignment="Top" Width="103" Click="btnAdd_Click"/>
+        <Button x:Name="btnRemove" Content="删除" HorizontalAlignment="Left" Margin="124,68,0,0" VerticalAlignment="Top" Width="103"/>
+        <ListBox x:Name="urlList" HorizontalAlignment="Left" Height="300" Margin="8,92,0,0" VerticalAlignment="Top" Width="328"/>
+        <Button x:Name="btnStart" Content="启动" HorizontalAlignment="Left" Margin="234,68,0,0" VerticalAlignment="Top" Width="102"/>
+        <StatusBar HorizontalAlignment="Left" Height="30" Margin="0,397,0,0" VerticalAlignment="Top" Width="347">
+            <StatusBarItem Height="30" VerticalAlignment="Top">
+                <TextBlock x:Name="curStatus" TextWrapping="Wrap"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
