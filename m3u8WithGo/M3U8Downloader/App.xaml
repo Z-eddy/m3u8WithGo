@@ -1,7 +1,7 @@
-﻿<Application x:Class="m3u8WithGo.App"
+﻿<Application x:Class="M3U8Downloader.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:m3u8WithGo"
+             xmlns:local="clr-namespace:M3U8Downloader"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
