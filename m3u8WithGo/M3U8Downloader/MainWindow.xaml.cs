@@ -24,10 +24,10 @@ namespace M3U8Downloader
     public partial class MainWindow : Window
     {
         // 调用dll,显示控制台
-#if DEBUG
+//#if DEBUG
         [DllImport("Kernel32.dll")]
         public static extern bool AllocConsole();
-#endif
+//#endif
 
         /***********Property***********/
         private HashSet<string> curUrls = new HashSet<string>();
@@ -41,10 +41,10 @@ namespace M3U8Downloader
             // 记录主线程
             mainThreadSynContext = SynchronizationContext.Current;
 
-#if DEBUG
+//#if DEBUG
             // 显示控制台
             AllocConsole();
-#endif
+//#endif
         }
 
         private void on_deleteListItem(object arg)
@@ -115,6 +115,17 @@ namespace M3U8Downloader
             }
         }
 
+        private static void outputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        {
+            var rawData= outLine.Data;
+            if (rawData==null)
+            {
+                return;
+            }
+            var line = rawData.ToString();
+            Console.WriteLine(line);
+        }
+
         private void downM3U8(object arg)
         {
             var item = (ZrListItem)arg;
@@ -131,6 +142,8 @@ namespace M3U8Downloader
             goApp.StartInfo.RedirectStandardError = true;
             goApp.StartInfo.RedirectStandardInput = true;
 
+            goApp.OutputDataReceived += new DataReceivedEventHandler(outputHandler);
+
             // 参数输入
             goApp.StartInfo.Arguments = " -u=\"" + item.Url + "\" -n=" + item.Filename + " -c=256";
 
@@ -138,7 +151,9 @@ namespace M3U8Downloader
             goApp.Start();
 
             // 等待完成
-            goApp.StandardOutput.ReadToEnd();
+            goApp.BeginOutputReadLine();
+            //var msg=goApp.StandardOutput.ReadToEnd();
+            //Console.WriteLine(msg);
             goApp.WaitForExit();
             goApp.Close();
 
